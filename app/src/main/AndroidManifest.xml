@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- Permisos necesarios -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/logo_cancun_connect"
+        android:label="@string/nombre_app"
+        android:roundIcon="@mipmap/logo_cancun_connect_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CancunConnect"
+        tools:targetApi="31">
+        <activity
+            android:name="view.SubscriptionActivity"
+            android:exported="true" />
+        <!-- Declaración de la actividad RouteDetailActivity para ver los detalles de la ruta -->
+        <activity
+            android:name="view.RouteDetailActivity"
+            android:exported="true" /> <!-- Cambiamos a true ya que es accesible -->
+        <!-- Declaración de MapActivity para mostrar el mapa -->
+        <activity
+            android:name="viewmodel.MapActivity"
+            android:exported="false" /> <!-- Otros activities necesarios -->
+        <activity
+            android:name="view.RoutesActivity"
+            android:exported="true" /> <!-- Cambiamos a true ya que es accesible -->
+        <!-- Declaración del activity de perfil -->
+        <activity
+            android:name="view.ProfileActivity"
+            android:exported="false" /> <!-- Clave de la API de Google Maps -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAm5jl3mN6Mp5C68nI3yqqMmddK1RZ0ZeE" /> <!-- Declaración de la actividad de registro -->
+        <activity
+            android:name="view.RegisterActivity"
+            android:exported="false" /> <!-- Declaración de la actividad de inicio/splash -->
+        <activity
+            android:name="view.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- Declaración de la actividad principal -->
+        <activity
+            android:name="view.MainActivity"
+            android:exported="true" />
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+    </application>
+
+</manifest>

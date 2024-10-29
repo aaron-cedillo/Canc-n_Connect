@@ -1,0 +1,28 @@
+{
+  "apiVersion": 2,
+  "apiVersionMinor": 0,
+  "allowedPaymentMethods": [
+    {
+      "type": "CARD",
+      "parameters": {
+        "allowedAuthMethods": ["PAN_ONLY", "CRYPTOGRAM_3DS"],
+        "allowedCardNetworks": ["AMEX", "DISCOVER", "JCB", "MASTERCARD", "VISA"]
+      },
+      "tokenizationSpecification": {
+        "type": "PAYMENT_GATEWAY",
+        "parameters": {
+          "gateway": "stripe",
+          "gatewayMerchantId": "pk_test_51QBusaB2sUU9VXMG1D884mBuURCvoABQbh3wK76My2AMtZ7irI1dBgI9cWVrLssN8vPk26Jgdmm5U50zvWgq5RYV00PjXiMVVu"
+        }
+      }
+    }
+  ],
+  "merchantInfo": {
+    "merchantName": "CancúnConnect"
+  },
+  "transactionInfo": {
+    "totalPriceStatus": "FINAL",
+    "totalPrice": "100.00",
+    "currencyCode": "MXN"
+  }
+}

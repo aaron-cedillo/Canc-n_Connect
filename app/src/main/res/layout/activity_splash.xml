@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white"
+    android:padding="16dp">
+
+  <!-- Logo de la app -->
+  <ImageView
+      android:id="@+id/logo"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/logo_cancun_connect"
+      android:contentDescription="@string/logo_desc"
+      android:layout_marginBottom="24dp" />
+
+  <!-- Texto adicional -->
+  <TextView
+      android:id="@+id/app_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/app_name"
+      android:textSize="24sp"
+      android:textStyle="bold"
+      android:layout_marginBottom="16dp" />
+
+  <!-- Campo de entrada para correo electrónico -->
+  <EditText
+      android:id="@+id/email_edit_text"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:hint="Correo electrónico"
+      android:inputType="textEmailAddress"
+      android:minHeight="48dp" />
+
+  <!-- Campo de entrada para contraseña con ícono de visibilidad -->
+  <EditText
+      android:id="@+id/password_edit_text"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="16dp"
+      android:hint="Contraseña"
+      android:inputType="textPassword"
+      android:minHeight="48dp"
+      android:drawableEnd="@drawable/ic_visibility_off" />
+
+  <!-- Botón de inicio de sesión -->
+  <Button
+      android:id="@+id/login_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Iniciar Sesión" />
+
+  <!-- Opción de registrarse -->
+  <TextView
+      android:id="@+id/register_text"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:clickable="true"
+      android:focusable="true"
+      android:minHeight="48dp"
+      android:text="¿No tienes una cuenta? Regístrate"
+      android:textColor="@android:color/holo_blue_dark" />
+
+  <!-- Otras visualizaciones o mensajes -->
+  <TextView
+      android:id="@+id/welcome_message"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/welcome_message"
+      android:textSize="16sp"
+      android:gravity="center" />
+
+</LinearLayout>

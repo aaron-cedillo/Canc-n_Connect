@@ -1,0 +1,47 @@
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Tu guía en cualquier lugar</string>
+    <string name="nombre_app">Cancún Connect</string>
+
+    <!-- Descripción del logo -->
+    <string name="logo_desc">Logo de Cancún Connect</string>
+
+    <!-- Mensaje de bienvenida -->
+    <string name="welcome_message">¡Bienvenido a Cancún Connect!</string>
+
+    <!-- Botones de transporte -->
+    <string name="button_camiones">Camiones</string>
+    <string name="button_combis">Combis</string>
+
+    <!-- Campo de búsqueda -->
+    <string name="search_hint">Ingresar punto de partida</string>
+    <string name="search_icon_desc">Icono de búsqueda</string>
+
+    <!-- Opciones de destino -->
+    <string name="set_destination">Establecer destino en el mapa</string>
+    <string name="around_you">A tu alrededor</string>
+
+    <!-- Descripción del mapa -->
+    <string name="map_desc">Mapa de Cancún</string>
+
+    <!-- Botones del menú inferior -->
+    <string name="button_home">Inicio</string>
+    <string name="button_routes">Rutas</string>
+    <string name="button_account">Cuenta</string>
+
+    <!-- Mensajes de Toast para pruebas -->
+    <string name="toast_showing_camiones">Mostrar rutas de camiones</string>
+    <string name="toast_showing_combis">Mostrar rutas de combis</string>
+    <string name="toast_home">Inicio</string>
+    <string name="toast_routes">Rutas</string>
+    <string name="toast_account">Cuenta</string>
+    <string name="toast_set_destination">Establecer destino en el mapa</string>
+    <string name="toast_around_you">Rutas a tu alrededor</string>
+
+    <!-- Mensajes de explicación -->
+    <string name="profile_image_desc">Imagen de perfil del usuario</string>
+    <string name="edit_email">Editar correo electrónico</string>
+    <string name="edit_name">Editar nombre</string>
+    <string name="edit_password">Editar contraseña</string>
+    <string name="edit_profile_image">Cambiar imagen de perfil</string>
+</resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1054488701170",
+    "project_id": "cancunconnect-fd450",
+    "storage_bucket": "cancunconnect-fd450.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054488701170:android:2978f1db4d8ee33847086b",
+        "android_client_info": {
+          "package_name": "com.example.cancunconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054488701170-isj62vteklrn94ntd3o3a0aslkfnmu39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5CNlrTZFSnXpEQdxh0cKaAtmL3HeAVi0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054488701170-isj62vteklrn94ntd3o3a0aslkfnmu39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

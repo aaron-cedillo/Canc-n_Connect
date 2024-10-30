@@ -149,7 +149,7 @@
                         android:id="@+id/monthly_plan_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_background"
+                        android:backgroundTint="@color/gris_principal"
                         android:text="$150.00 por mes" />
 
                     <Button
@@ -157,7 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$1,500.00 por año"
-                        android:background="@drawable/edit_text_background"
+                        android:backgroundTint="@color/gris_principal"
                         android:layout_marginStart="16dp" />
                 </LinearLayout>
 
@@ -173,7 +173,7 @@
                 android:id="@+id/start_plan_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/edit_text_background"
+                android:backgroundTint="@color/gris_principal"
                 android:text="Iniciar Plan"
                 android:layout_marginTop="16dp" />
 
@@ -184,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pagar con Google Pay"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/circle_background"
+                android:backgroundTint="@color/verde_principal"
                 android:textColor="@color/white" />
 
             <!-- TextView para la información de suscripción con estilo mejorado -->

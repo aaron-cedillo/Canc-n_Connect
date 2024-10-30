@@ -53,7 +53,8 @@
       android:id="@+id/login_button"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="Iniciar Sesión" />
+      android:text="Iniciar Sesión"
+      android:backgroundTint="@color/verde_principal" />
 
   <!-- Opción de registrarse -->
   <TextView

@@ -90,7 +90,7 @@
                     android:textSize="14sp"
                     android:gravity="center"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/gris_principal" />
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <LinearLayout
@@ -105,7 +105,7 @@
                 <ImageView
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/ic_ambulance"
+                    android:src="@drawable/ic_choque"
                     android:contentDescription="Icono de ambulancia"
                     android:layout_gravity="center" />
 
@@ -126,7 +126,7 @@
                     android:textSize="14sp"
                     android:gravity="center"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/gris_principal" />
+                    android:textColor="@color/white" />
             </LinearLayout>
 
             <!-- Contenedor de opciones de pago -->
@@ -149,6 +149,7 @@
                         android:id="@+id/monthly_plan_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_background"
                         android:text="$150.00 por mes" />
 
                     <Button
@@ -156,6 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="$1,500.00 por año"
+                        android:background="@drawable/edit_text_background"
                         android:layout_marginStart="16dp" />
                 </LinearLayout>
 
@@ -170,6 +172,7 @@
                     android:id="@+id/start_plan_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
                     android:text="Iniciar Plan"
                     android:layout_marginTop="16dp" />
 
@@ -180,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:text="Pagar con Google Pay"
                     android:layout_marginTop="16dp"
-                    android:background="@color/black"
+                    android:background="@drawable/circle_background"
                     android:textColor="@color/white" />
 
             </LinearLayout>

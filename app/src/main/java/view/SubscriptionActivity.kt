@@ -27,13 +27,12 @@ class SubscriptionActivity : AppCompatActivity() {
 
     private lateinit var firestore: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
-    private var selectedPlan: String = "mensual"
-
-    // Google Pay Client
     private lateinit var paymentsClient: PaymentsClient
     private lateinit var subscriptionInfoTextView: TextView
     private lateinit var startPlanButton: Button
     private lateinit var verifySubscriptionButton: Button
+    private lateinit var googlePayButton: Button // Declara googlePayButton aquí
+    private var selectedPlan: String = "mensual"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +44,7 @@ class SubscriptionActivity : AppCompatActivity() {
         subscriptionInfoTextView = findViewById(R.id.subscription_info_text_view)
         startPlanButton = findViewById(R.id.start_plan_button)
         verifySubscriptionButton = findViewById(R.id.verify_subscription_button)
+        googlePayButton = findViewById(R.id.google_pay_button) // Inicializa googlePayButton aquí
 
         // Inicializa Stripe con tu clave pública
         PaymentConfiguration.init(
@@ -70,7 +70,6 @@ class SubscriptionActivity : AppCompatActivity() {
 
         val monthlyButton: Button = findViewById(R.id.monthly_plan_button)
         val yearlyButton: Button = findViewById(R.id.yearly_plan_button)
-        val googlePayButton: Button = findViewById(R.id.google_pay_button)
 
         monthlyButton.setOnClickListener {
             selectedPlan = "mensual"
@@ -122,15 +121,26 @@ class SubscriptionActivity : AppCompatActivity() {
                     if (document.exists()) {
                         val tipoSuscripcion = document.getString("tipo_suscripcion") ?: "Desconocido"
                         val fechaFin = document.getTimestamp("fecha_fin")?.toDate()
-                        subscriptionInfoTextView.text = "Suscripción: $tipoSuscripcion\nVence el: $fechaFin"
+
+                        // Muestra la información de la suscripción en español
+                        val fechaFinFormatted = fechaFin?.let { fecha ->
+                            java.text.SimpleDateFormat("dd 'de' MMMM 'de' yyyy", Locale("es", "ES")).format(fecha)
+                        }
+                        subscriptionInfoTextView.text = "Suscripción: $tipoSuscripcion\nVence el: $fechaFinFormatted"
                         subscriptionInfoTextView.visibility = View.VISIBLE
 
-                        // Ocultar opciones de pago y botón de verificar
+                        // Oculta los botones de iniciar plan y Google Pay si ya tiene una suscripción
                         findViewById<LinearLayout>(R.id.payment_options_container).visibility = View.GONE
+                        startPlanButton.visibility = View.GONE
+                        googlePayButton.visibility = View.GONE
                         verifySubscriptionButton.visibility = View.GONE // Oculta el botón de verificar
                     } else {
+                        // Si no tiene suscripción, muestra solo las opciones de pago y oculta el botón de verificar
                         findViewById<LinearLayout>(R.id.payment_options_container).visibility = View.VISIBLE
                         subscriptionInfoTextView.visibility = View.GONE
+                        startPlanButton.visibility = View.VISIBLE
+                        googlePayButton.visibility = View.VISIBLE
+                        verifySubscriptionButton.visibility = View.GONE // Oculta el botón de verificar en cuentas sin suscripción
                     }
                 }
                 .addOnFailureListener {
@@ -140,10 +150,7 @@ class SubscriptionActivity : AppCompatActivity() {
     }
 
 
-
-
     private fun showSubscriptionInfo() {
-        // Muestra la información de suscripción en lugar de las opciones de pago
         subscriptionInfoTextView.visibility = View.VISIBLE
         startPlanButton.visibility = View.GONE
     }

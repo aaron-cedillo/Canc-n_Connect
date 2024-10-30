@@ -167,26 +167,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp" />
-
-                <Button
-                    android:id="@+id/start_plan_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text_background"
-                    android:text="Iniciar Plan"
-                    android:layout_marginTop="16dp" />
-
-                <!-- Botón para iniciar el pago con Google Pay -->
-                <Button
-                    android:id="@+id/google_pay_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pagar con Google Pay"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/circle_background"
-                    android:textColor="@color/white" />
-
             </LinearLayout>
+
+            <Button
+                android:id="@+id/start_plan_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:text="Iniciar Plan"
+                android:layout_marginTop="16dp" />
+
+            <!-- Botón para iniciar el pago con Google Pay -->
+            <Button
+                android:id="@+id/google_pay_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pagar con Google Pay"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/circle_background"
+                android:textColor="@color/white" />
 
             <!-- TextView para la información de suscripción con estilo mejorado -->
             <TextView

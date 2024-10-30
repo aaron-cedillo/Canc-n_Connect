@@ -63,7 +63,7 @@
                 android:orientation="vertical"
                 android:padding="16dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/rounded_background"
+                android:background="@drawable/circle_background"
                 android:gravity="center">
 
                 <ImageView
@@ -80,7 +80,8 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:layout_marginTop="8dp" />
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -88,7 +89,8 @@
                     android:text="Accede de manera silenciosa a un despachador de servicios de emergencia que puede enviar ayuda a tu ubicación."
                     android:textSize="14sp"
                     android:gravity="center"
-                    android:layout_marginTop="4dp" />
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/gris_principal" />
             </LinearLayout>
 
             <LinearLayout
@@ -97,7 +99,7 @@
                 android:orientation="vertical"
                 android:padding="16dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/rounded_background"
+                android:background="@drawable/circle_background"
                 android:gravity="center">
 
                 <ImageView
@@ -114,7 +116,8 @@
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:layout_marginTop="8dp" />
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -122,7 +125,8 @@
                     android:text="Cuando se detecte un accidente, un despachador enviará ayuda a la ubicación exacta del vehículo."
                     android:textSize="14sp"
                     android:gravity="center"
-                    android:layout_marginTop="4dp" />
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/gris_principal" />
             </LinearLayout>
 
             <!-- Contenedor de opciones de pago -->

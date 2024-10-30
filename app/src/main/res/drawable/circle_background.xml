@@ -3,12 +3,12 @@
     android:shape="rectangle">
 
     <!-- Color de fondo -->
-    <solid android:color="@color/gris_principal"/> <!-- Fondo gris -->
+    <solid android:color="@color/verde_principal"/> <!-- Fondo verde -->
 
     <!-- Borde del EditText -->
     <stroke
         android:width="2dp"
-        android:color="@color/gris_principal"/> <!-- Borde gris claro -->
+        android:color="@color/verde_principal"/> <!-- Borde -->
 
     <!-- Esquinas redondeadas -->
     <corners android:radius="8dp"/>

@@ -29,16 +29,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Camiones"
-            android:drawableTop="@drawable/ic_bus_blanco"
-            android:layout_marginEnd="16dp" />
+            android:drawableTop="@drawable/ic_bus"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/verde_principal" />
 
         <Button
             android:id="@+id/button_combis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Combis"
-            android:drawableTop="@drawable/ic_van_blanco"
-            android:layout_marginEnd="16dp" />
+            android:drawableTop="@drawable/ic_van"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/verde_principal" />
 
         <!-- Botón SOS -->
         <Button
@@ -46,7 +48,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SOS"
-            android:drawableTop="@drawable/ic_sos" />
+            android:drawableTop="@drawable/ic_sos"
+            android:backgroundTint="@color/verde_principal" />
     </LinearLayout>
 
     <!-- Fragmento de Google Maps -->

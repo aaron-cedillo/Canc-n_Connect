@@ -39,9 +39,9 @@ class RoutesAdapter(
 
             // Cambia el ícono según el tipo de ruta (camión o combi)
             if (route.tipo == "camion") {
-                routeIcon.setImageResource(R.drawable.ic_bus)
+                routeIcon.setImageResource(R.drawable.ic_bus_blanco)
             } else {
-                routeIcon.setImageResource(R.drawable.ic_van)
+                routeIcon.setImageResource(R.drawable.ic_van_blanco)
             }
 
             // Manejar el clic en "Ver ruta"

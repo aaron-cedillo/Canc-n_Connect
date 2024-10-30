@@ -5,13 +5,19 @@
     android:orientation="horizontal"
     android:padding="16dp">
 
-    <!-- Ícono de la ruta (camión o combi) -->
-    <ImageView
-        android:id="@+id/route_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_bus" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/circle_background"
+        android:padding="8dp">
+
+        <!-- Ícono de la ruta (camión o combi) -->
+        <ImageView
+            android:id="@+id/route_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_bus_blanco" />
+    </FrameLayout>
 
     <!-- Detalles de la ruta -->
     <LinearLayout

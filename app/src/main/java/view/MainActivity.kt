@@ -7,6 +7,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.os.Bundle
+import com.google.firebase.auth.FirebaseAuth
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -71,7 +73,32 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         sosButton.setOnClickListener {
             showSOSMenu()
         }
+        checkUserSubscription(sosButton)
     }
+
+    private fun checkUserSubscription(sosButton: Button) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId != null) {
+            firestore.collection("suscripciones").document(userId)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document.exists() && document.getString("estado_suscripcion") == "activa") {
+                        // Si la suscripción está activa, muestra el botón SOS
+                        sosButton.visibility = View.VISIBLE
+                    } else {
+                        // Si no está activa, oculta el botón SOS
+                        sosButton.visibility = View.GONE
+                    }
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error al verificar suscripción: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            // Si no hay usuario logueado, oculta el botón SOS
+            sosButton.visibility = View.GONE
+        }
+    }
+
 
     private fun showSOSMenu() {
         // Opciones para el menú de emergencia

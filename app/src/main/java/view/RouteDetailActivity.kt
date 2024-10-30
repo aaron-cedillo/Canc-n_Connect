@@ -4,6 +4,8 @@ import Model.Stop
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
@@ -32,6 +34,9 @@ class RouteDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var stopsRecyclerView: RecyclerView
     private lateinit var firestore: FirebaseFirestore
     private val LOCATION_PERMISSION_REQUEST_CODE = 1
+
+    // Coordenada inicial de Cancún
+    private val cancun = LatLng(21.1619, -86.8515)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,6 +138,9 @@ class RouteDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
+        // Mueve la cámara a Cancún cuando el mapa esté listo
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(cancun, 12.0f))
+
         // Verifica y solicita permisos de ubicación
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             map.isMyLocationEnabled = true
@@ -154,20 +162,35 @@ class RouteDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         ) {
             return
         }
+
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             if (location != null) {
                 val userLatLng = LatLng(location.latitude, location.longitude)
 
-                // Añade un marcador personalizado para la ubicación del usuario
-                map.addMarker(
-                    MarkerOptions()
-                        .position(userLatLng)
-                        .title("Tu ubicación")
-                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-                )
+                // Intentamos obtener el recurso como Drawable y luego convertirlo a Bitmap
+                val drawable = ContextCompat.getDrawable(this, R.drawable.user_location_icon)
+                if (drawable != null) {
+                    // Convertimos el drawable a un Bitmap
+                    val bitmap = Bitmap.createBitmap(
+                        drawable.intrinsicWidth,
+                        drawable.intrinsicHeight,
+                        Bitmap.Config.ARGB_8888
+                    )
+                    val canvas = Canvas(bitmap)
+                    drawable.setBounds(0, 0, canvas.width, canvas.height)
+                    drawable.draw(canvas)
 
-                // Centra la cámara en la ubicación del usuario
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 14f))
+                    // Usamos el Bitmap para crear el icono del marcador
+                    val markerIcon = BitmapDescriptorFactory.fromBitmap(bitmap)
+                    map.addMarker(
+                        MarkerOptions()
+                            .position(userLatLng)
+                            .title("Tu ubicación")
+                            .icon(markerIcon)
+                    )
+                } else {
+                    Toast.makeText(this, "Error: No se pudo cargar el icono de ubicación.", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -189,10 +212,8 @@ class RouteDetailActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                // Permiso concedido
-                startLocationRelatedTask()
+                showUserLocation()
             } else {
-                // Permiso denegado
                 Toast.makeText(this, "Permiso de ubicación denegado", Toast.LENGTH_SHORT).show()
             }
         }
@@ -201,5 +222,4 @@ class RouteDetailActivity : AppCompatActivity(), OnMapReadyCallback {
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
     }
-
 }

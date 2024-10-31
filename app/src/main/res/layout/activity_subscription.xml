@@ -90,7 +90,7 @@
                     android:textSize="14sp"
                     android:gravity="center"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -126,7 +126,7 @@
                     android:textSize="14sp"
                     android:gravity="center"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <!-- Contenedor de opciones de pago -->
@@ -185,7 +185,7 @@
                 android:text="Pagar con Google Pay"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="@color/verde_principal"
-                android:textColor="@color/white" />
+                android:textColor="@color/black" />
 
             <!-- TextView para la información de suscripción con estilo mejorado -->
             <TextView

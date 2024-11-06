@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Listener para manejar los eventos del anuncio
         adView.adListener = object : com.google.android.gms.ads.AdListener() {
-
+            // Aquí puedes manejar los eventos del anuncio
         }
 
         // Inicializa el mapa
@@ -106,13 +106,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             showSOSMenu()
         }
 
-        //checkLocationPermission()
-
-        if (combiRoutes.isNotEmpty()) {
-            showMarkersAndRoutes(combiRoutes, "#FF0000") // Color rojo para combis
-        } else if (busRoutes.isNotEmpty()) {
-            showMarkersAndRoutes(busRoutes, "#0000FF") // Color azul para camiones
-        }
+        // Remueve la llamada a checkLocationPermission aquí
     }
 
     private fun checkUserSubscription(callback: (Boolean) -> Unit) {
@@ -171,7 +165,7 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         // Activa la ubicación del usuario en el mapa si el permiso está concedido
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mMap.isMyLocationEnabled = true
-            showUserLocation()
+            startLocationRelatedTask() // Llama a startLocationRelatedTask aquí
         } else {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
         }
@@ -285,7 +279,26 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun startLocationRelatedTask() {
-        TODO("Not yet implemented")
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            // Activa la capa de ubicación en el mapa
+            mMap.isMyLocationEnabled = true
+
+            // Obtiene la última ubicación del usuario y la muestra en el mapa
+            val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                if (location != null) {
+                    val userLatLng = LatLng(location.latitude, location.longitude)
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 15f)) // Acerca el mapa a la ubicación del usuario
+
+                    // Agrega un marcador para la ubicación actual del usuario (opcional)
+                } else {
+                    Toast.makeText(this, "No se pudo obtener la ubicación actual", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            // Solicita permisos si no han sido otorgados
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

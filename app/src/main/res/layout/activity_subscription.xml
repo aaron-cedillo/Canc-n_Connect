@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     android:padding="16dp">
+
 
     <LinearLayout
         android:id="@+id/back_to_profile_container"
@@ -150,13 +152,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/gris_principal"
-                        android:text="$150.00 por mes" />
+                        android:text="$50.00 por mes" />
 
                     <Button
                         android:id="@+id/yearly_plan_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$1,500.00 por año"
+                        android:text="$500.00 por año"
                         android:backgroundTint="@color/gris_principal"
                         android:layout_marginStart="16dp" />
                 </LinearLayout>
@@ -193,11 +195,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                android:background="@drawable/rounded_background"
+                android:background="@drawable/edit_text_background"
                 android:layout_marginBottom="16dp"
                 android:text="Información de suscripción"
                 android:textSize="16sp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:gravity="center"
                 android:visibility="gone" />
             <Button
@@ -219,7 +221,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_nav_menu"
+        app:backgroundTint="@android:color/white"
         app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color" />
+        app:itemTextColor="@color/nav_item_color"
+        app:itemRippleColor="@null" />
 
 </LinearLayout>

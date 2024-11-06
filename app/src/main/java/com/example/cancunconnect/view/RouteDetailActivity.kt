@@ -1,6 +1,6 @@
-package view
+package com.example.cancunconnect.view
 
-import Model.Stop
+import com.example.cancunconnect.model.Stop
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cancunconnect.R
-import viewmodel.StopsAdapter
+import com.example.cancunconnect.viewmodel.StopsAdapter
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap

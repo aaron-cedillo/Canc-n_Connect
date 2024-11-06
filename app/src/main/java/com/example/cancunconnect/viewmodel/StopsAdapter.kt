@@ -1,6 +1,6 @@
-package viewmodel
+package com.example.cancunconnect.viewmodel
 
-import Model.Stop
+import com.example.cancunconnect.model.Stop
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

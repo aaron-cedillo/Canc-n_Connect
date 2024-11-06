@@ -1,4 +1,4 @@
-package view
+package com.example.cancunconnect.view
 
 import android.content.Intent
 import android.os.Bundle

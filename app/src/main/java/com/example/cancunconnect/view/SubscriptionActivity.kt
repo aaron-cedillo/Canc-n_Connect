@@ -1,4 +1,4 @@
-package view
+package com.example.cancunconnect.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -31,7 +31,7 @@ class SubscriptionActivity : AppCompatActivity() {
     private lateinit var subscriptionInfoTextView: TextView
     private lateinit var startPlanButton: Button
     private lateinit var verifySubscriptionButton: Button
-    private lateinit var googlePayButton: Button // Declara googlePayButton aquí
+    private lateinit var googlePayButton: Button
     private var selectedPlan: String = "mensual"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -210,7 +210,7 @@ class SubscriptionActivity : AppCompatActivity() {
         }
 
         val transactionInfo = JSONObject().apply {
-            put("totalPrice", if (selectedPlan == "mensual") "100.00" else "1500.00")
+            put("totalPrice", if (selectedPlan == "mensual") "50.00" else "500.00")
             put("totalPriceStatus", "FINAL")
             put("currencyCode", "MXN")
         }
@@ -237,7 +237,7 @@ class SubscriptionActivity : AppCompatActivity() {
                 "tipo_suscripcion" to selectedPlan,
                 "fecha_inicio" to com.google.firebase.Timestamp.now(),
                 "fecha_fin" to calculateEndDate(selectedPlan),
-                "monto_pagado" to if (selectedPlan == "mensual") 100.00 else 1500.00,
+                "monto_pagado" to if (selectedPlan == "mensual") 50.00 else 500.00,
                 "estado_suscripcion" to "activa",
                 "auto_renovacion" to true,
                 "pago_id" to paymentIntentId

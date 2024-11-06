@@ -1,73 +1,97 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:background="@color/white">
 
-    <!-- Logo de Cancún Connect -->
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo_cancun_connect"
-        android:contentDescription="@string/logo_desc"
-        android:layout_gravity="center"
-        android:layout_marginBottom="24dp" />
-
-    <!-- Botones de Camiones, Combis y SOS -->
+    <!-- Contenedor principal con LinearLayout para organizar los elementos -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <Button
-            android:id="@+id/button_camiones"
+        <!-- Logo de Cancún Connect -->
+        <ImageView
+            android:id="@+id/logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Camiones"
-            android:drawableTop="@drawable/ic_bus"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/verde_principal" />
+            android:src="@drawable/logo_cancun_connect"
+            android:contentDescription="@string/logo_desc"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp" />
 
-        <Button
-            android:id="@+id/button_combis"
-            android:layout_width="wrap_content"
+        <!-- Botones de Camiones, Combis y SOS -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Combis"
-            android:drawableTop="@drawable/ic_van"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/verde_principal" />
+            android:orientation="horizontal"
+            android:gravity="center">
 
-        <!-- Botón SOS -->
-        <Button
-            android:id="@+id/button_sos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SOS"
-            android:drawableTop="@drawable/ic_sos"
-            android:backgroundTint="@color/verde_principal" />
+            <Button
+                android:id="@+id/button_camiones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Camiones"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:drawableTop="@drawable/ic_bus"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/verde_principal" />
+
+            <Button
+                android:id="@+id/button_combis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Combis"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:drawableTop="@drawable/ic_van"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="@color/verde_principal" />
+
+            <!-- Botón SOS -->
+            <Button
+                android:id="@+id/button_sos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SOS"
+                android:drawableTop="@drawable/ic_sos"
+                android:backgroundTint="@color/rojo_peligro" />
+        </LinearLayout>
+
+        <!-- Fragmento de Google Maps -->
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="24dp" />
+
     </LinearLayout>
 
-    <!-- Fragmento de Google Maps -->
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <!-- Banner de AdMob (colocado al frente del mapa) -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="24dp" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="60dp"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
 
-    <!-- Bottom Navigation View -->
+    <!-- Bottom Navigation View (se muestra al final) -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_nav_menu"
+        app:backgroundTint="@android:color/white"
         app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color" />
-</LinearLayout>
+        app:itemTextColor="@color/nav_item_color"
+        app:itemRippleColor="@null" />
+
+</FrameLayout>

@@ -3,7 +3,7 @@
     <style name="Base.Theme.CancunConnect" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/gris_principal</item>
-        <!--   <item name="colorPrimary">@color/gris_principal</item>-->
+        <item name="colorPrimaryVariant">@android:color/white</item>
       </style>
 
       <style name="Theme.CancunConnect" parent="Base.Theme.CancunConnect" />

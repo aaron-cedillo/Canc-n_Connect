@@ -10,4 +10,6 @@
     <color name="light_gray">#D9D6D6</color>
     <color name="verde_principal">#92D14F</color>
     <color name="gris_principal">#808080</color>
+    <color name="rojo_peligro">#FF0000</color>
+    <color name="rojo_diferente">#FF4C4C</color>
 </resources>

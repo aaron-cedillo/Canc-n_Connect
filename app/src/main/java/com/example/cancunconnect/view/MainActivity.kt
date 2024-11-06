@@ -1,21 +1,25 @@
-package view
+package com.example.cancunconnect.view
 
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.os.Bundle
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import android.view.View
 import android.widget.Button
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.cancunconnect.R
+import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -29,9 +33,11 @@ import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 
+
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+    private lateinit var adView: AdView
     private val firestore = FirebaseFirestore.getInstance()
     private val combiRoutes: MutableMap<Marker, List<LatLng>> = mutableMapOf()
     private val busRoutes: MutableMap<Marker, List<LatLng>> = mutableMapOf()
@@ -41,9 +47,39 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Inicializa el AdView y el botón SOS
+        adView = findViewById(R.id.adView)
+        val sosButton = findViewById<Button>(R.id.button_sos)
+
+        // Inicializa AdMob con el ID de la aplicación
+        MobileAds.initialize(this) {}
+
+        // Verifica el estado de la suscripción antes de cargar el anuncio y configurar el botón SOS
+        checkUserSubscription { isSubscribed ->
+            if (isSubscribed) {
+                // Usuario con suscripción activa: muestra el botón SOS y oculta el anuncio
+                sosButton.visibility = View.VISIBLE
+                adView.visibility = View.GONE
+            } else {
+                // Usuario sin suscripción activa: oculta el botón SOS y muestra el anuncio
+                sosButton.visibility = View.GONE
+                val adRequest = AdRequest.Builder().build()
+                adView.loadAd(adRequest)
+                adView.visibility = View.VISIBLE
+            }
+        }
+
+        // Configura y carga el anuncio de banner
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+
+        // Listener para manejar los eventos del anuncio
+        adView.adListener = object : com.google.android.gms.ads.AdListener() {
+
+        }
+
         // Inicializa el mapa
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
+        val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         // Configura el Bottom Navigation
@@ -55,50 +91,54 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                     true
                 }
                 R.id.navigation_rutas -> {
-                    val intent = Intent(this, RoutesActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, RoutesActivity::class.java))
                     true
                 }
                 R.id.navigation_cuenta -> {
-                    val intent = Intent(this, ProfileActivity::class.java)
-                    startActivity(intent)
+                    startActivity(Intent(this, ProfileActivity::class.java))
                     true
                 }
                 else -> false
             }
         }
 
-        // Configura el botón SOS para mostrar el menú emergente
-        val sosButton: Button = findViewById(R.id.button_sos)
         sosButton.setOnClickListener {
             showSOSMenu()
         }
-        checkUserSubscription(sosButton)
+
+        //checkLocationPermission()
+
+        if (combiRoutes.isNotEmpty()) {
+            showMarkersAndRoutes(combiRoutes, "#FF0000") // Color rojo para combis
+        } else if (busRoutes.isNotEmpty()) {
+            showMarkersAndRoutes(busRoutes, "#0000FF") // Color azul para camiones
+        }
     }
 
-    private fun checkUserSubscription(sosButton: Button) {
+    private fun checkUserSubscription(callback: (Boolean) -> Unit) {
         val userId = FirebaseAuth.getInstance().currentUser?.uid
         if (userId != null) {
             firestore.collection("suscripciones").document(userId)
                 .get()
                 .addOnSuccessListener { document ->
                     if (document.exists() && document.getString("estado_suscripcion") == "activa") {
-                        // Si la suscripción está activa, muestra el botón SOS
-                        sosButton.visibility = View.VISIBLE
+                        // Usuario tiene una suscripción activa
+                        callback(true)
                     } else {
-                        // Si no está activa, oculta el botón SOS
-                        sosButton.visibility = View.GONE
+                        // Usuario no tiene una suscripción activa
+                        callback(false)
                     }
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Error al verificar suscripción: ${e.message}", Toast.LENGTH_SHORT).show()
+                    // Asume que no tiene suscripción en caso de error
+                    callback(false)
                 }
         } else {
-            // Si no hay usuario logueado, oculta el botón SOS
-            sosButton.visibility = View.GONE
+            // No hay usuario logueado, asume que no tiene suscripción
+            callback(false)
         }
     }
-
 
     private fun showSOSMenu() {
         // Opciones para el menú de emergencia

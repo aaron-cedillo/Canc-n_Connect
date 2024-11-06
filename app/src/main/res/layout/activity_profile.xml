@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="view.ProfileActivity">
+    tools:context=".view.ProfileActivity">
 
     <!-- ScrollView para que el contenido pueda desplazarse si es necesario -->
     <ScrollView
@@ -192,6 +192,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_nav_menu"
+        app:backgroundTint="@android:color/white"
         app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color" />
+        app:itemTextColor="@color/nav_item_color"
+        app:itemRippleColor="@null" />
 </LinearLayout>

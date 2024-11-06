@@ -1,6 +1,6 @@
-package view
+package com.example.cancunconnect.view
 
-import Model.Route
+import com.example.cancunconnect.model.Route
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cancunconnect.R
-import viewmodel.RoutesAdapter
+import com.example.cancunconnect.viewmodel.RoutesAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 

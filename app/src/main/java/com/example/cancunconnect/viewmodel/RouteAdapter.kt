@@ -1,6 +1,6 @@
-package viewmodel
+package com.example.cancunconnect.viewmodel
 
-import Model.Route
+import com.example.cancunconnect.model.Route
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

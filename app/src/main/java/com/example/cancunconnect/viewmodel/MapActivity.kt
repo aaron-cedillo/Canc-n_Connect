@@ -1,6 +1,6 @@
-package viewmodel
+package com.example.cancunconnect.viewmodel
 
-import Model.Stop
+import com.example.cancunconnect.model.Stop
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -16,7 +16,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PolylineOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
-import view.RoutesActivity
+import com.example.cancunconnect.view.RoutesActivity
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback {
 

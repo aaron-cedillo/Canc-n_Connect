@@ -1,4 +1,4 @@
-package Model
+package com.example.cancunconnect.model
 
 data class Stop(
     val name: String,

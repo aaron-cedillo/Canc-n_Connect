@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cancunconnect.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.perf.FirebasePerformance
+import com.google.firebase.perf.metrics.Trace
 
 class SplashActivity : AppCompatActivity() {
 
@@ -22,6 +24,7 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var registerText: TextView
 
     private var isPasswordVisible = false
+    private lateinit var loginTrace: Trace // Definimos una traza para el login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,10 @@ class SplashActivity : AppCompatActivity() {
 
         // Inicializa Firebase Auth
         auth = FirebaseAuth.getInstance()
+
+        // Inicializa Firebase Performance Trace
+        loginTrace = FirebasePerformance.getInstance().newTrace("login_trace")
+        loginTrace.start() // Inicia la traza del login
 
         // Obtiene las vistas
         emailEditText = findViewById(R.id.email_edit_text)
@@ -78,10 +85,15 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun signIn(email: String, password: String) {
+        // Inicia la traza del login
+        loginTrace.putAttribute("email", email) // Agrega detalles (esto no debería incluir contraseñas)
+
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("SplashActivity", "signIn:success") // Log de inicio de sesión exitoso
+                    // Fin de la traza de login (si el inicio de sesión es exitoso)
+                    loginTrace.stop()
                     // Inicio de sesión exitoso, navegar a MainActivity
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
@@ -89,6 +101,8 @@ class SplashActivity : AppCompatActivity() {
                 } else {
                     // Si el inicio de sesión falla, muestra un mensaje con el error específico
                     Log.w("SplashActivity", "signIn:failure", task.exception)
+                    // Fin de la traza de login (si el inicio de sesión falla)
+                    loginTrace.stop()
                     Toast.makeText(baseContext, "Autenticación fallida: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }

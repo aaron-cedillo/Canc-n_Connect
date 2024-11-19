@@ -44,6 +44,8 @@ dependencies {
     implementation ("com.google.firebase:firebase-analytics-ktx")
     implementation ("com.google.firebase:firebase-storage:20.2.1")
     implementation (platform("com.google.firebase:firebase-bom:33.3.0"))
+    implementation("com.google.firebase:firebase-perf")
+    //implementation ("com.google.firebase:firebase-perf:20.0.4")
 
     // Stripe para pagos
     //implementation ("com.stripe:stripe-android:20.10.0")

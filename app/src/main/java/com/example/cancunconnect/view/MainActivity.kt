@@ -210,6 +210,26 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
             .addOnFailureListener {
                 Toast.makeText(this, "Error al cargar rutas", Toast.LENGTH_SHORT).show()
             }
+        // Botones para mostrar rutas de camiones o combis
+        val buttonCamiones = findViewById<Button>(R.id.button_camiones)
+        val buttonCombis = findViewById<Button>(R.id.button_combis)
+
+// Mostrar solo rutas de camiones
+        buttonCamiones.setOnClickListener {
+            // Oculta todos los marcadores
+            ocultarTodosLosMarcadores()
+            // Muestra solo los marcadores de camiones
+            busRoutes.keys.forEach { it.isVisible = true }
+        }
+
+// Mostrar solo rutas de combis
+        buttonCombis.setOnClickListener {
+            // Oculta todos los marcadores
+            ocultarTodosLosMarcadores()
+            // Muestra solo los marcadores de combis
+            combiRoutes.keys.forEach { it.isVisible = true }
+        }
+
     }
 
     private fun showUserLocation() {
@@ -312,6 +332,13 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(this, "Permiso de ubicación denegado", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun ocultarTodosLosMarcadores() {
+        // Oculta los marcadores de camiones
+        busRoutes.keys.forEach { it.isVisible = false }
+        // Oculta los marcadores de combis
+        combiRoutes.keys.forEach { it.isVisible = false }
     }
 
     companion object {
